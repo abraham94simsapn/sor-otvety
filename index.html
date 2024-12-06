@@ -5,183 +5,231 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Суммативное оценивание</title>
     <style>
+        /* Основные стили */
         body {
-            background-color: #0d1117;
-            color: #c9d1d9;
-            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f6f8fa;
+            color: #24292f;
+            font-family: Arial, sans-serif;
             margin: 0;
-            padding: 20px;
-            line-height: 1.6;
+            padding: 0;
         }
 
         h1, h2, h3 {
-            color: #58a6ff;
-            margin-bottom: 10px;
+            color: #0366d6;
         }
 
-        h1 {
-            font-size: 2.5em;
-        }
-
-        h2 {
-            font-size: 1.8em;
-        }
-
-        h3 {
-            font-size: 1.5em;
-        }
-
-        ul {
-            padding-left: 20px;
+        /* Контейнер с паддингами */
+        .content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 15px;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
-            background-color: #161b22;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
         }
 
         th, td {
-            padding: 12px 15px;
+            padding: 12px;
             text-align: left;
-            border: 1px solid #30363d;
+            border: 1px solid #d1d5da;
         }
 
         th {
-            background-color: #21262d;
-            color: #c9d1d9;
-            font-weight: bold;
-        }
-
-        td {
-            color: #adbac7;
+            background-color: #0366d6;
+            color: #fff;
         }
 
         tr:nth-child(even) {
-            background-color: #161b22;
-        }
-
-        tr:hover {
-            background-color: #21262d;
-        }
-
-        .container {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
+            background-color: #f6f8fa;
         }
 
         .table-container {
             overflow-x: auto;
         }
 
-        .table-container::-webkit-scrollbar {
-            height: 8px;
+        ul, ol {
+            padding-left: 40px;
         }
 
-        .table-container::-webkit-scrollbar-thumb {
-            background: #30363d;
-            border-radius: 4px;
+        /* Бургер-меню */
+        .burger-menu {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            background-color: #0366d6;
+            border-radius: 5px;
+            padding: 10px;
+            cursor: pointer;
+            z-index: 1000;
         }
 
-        .table-container::-webkit-scrollbar-thumb:hover {
-            background: #484f58;
+        .burger-menu div {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 5px 0;
         }
 
-        p {
-            margin: 10px 0;
+        .side-menu {
+            position: fixed;
+            top: 0;
+            left: -250px;
+            width: 250px;
+            height: 100%;
+            background-color: #24292f;
+            color: #fff;
+            overflow-y: auto;
+            transition: left 0.3s ease;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .side-menu.open {
+            left: 0;
+        }
+
+        .side-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .side-menu li {
+            padding: 15px 20px;
+            border-bottom: 1px solid #444;
+        }
+
+        .side-menu li:hover {
+            background-color: #0366d6;
+            cursor: pointer;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none;
+            z-index: 500;
+        }
+
+        .overlay.open {
+            display: block;
         }
 
         @media (max-width: 768px) {
-            body {
-                padding: 10px;
-            }
-
-            table {
-                font-size: 0.9em;
+            h1 {
+                font-size: 1.8rem;
             }
         }
     </style>
 </head>
 <body>
-    <h1>Суммативное оценивание 1</h1>
-    <h2>За раздел «Человек и природа»</h2>
-    <h3>7 класс 2 четверть</h3>
-
-    <h2>Цель обучения:</h2>
-    <ul>
-        <li>7.1.6.1 давать аргументированный ответ на проблемный вопрос;</li>
-        <li>7.2.2.1 определять тему и идею произведения, выражая своё мнение о поступках героев;</li>
-        <li>7.2.9.1 писать творческие работы (сочинения, притча, отзыв, репортаж, интервью с литературным героем), выражая свое отношение к прочитанному, используя изобразительные средства языка.</li>
-    </ul>
-
-    <div class="table-container">
-        <table>
-            <tr>
-                <th></th>
-                <th>«Зимнее утро»</th>
-                <th>«Зимний вечер»</th>
-            </tr>
-            <tr>
-                <td>1. Какое время года описывается в стихотворении?</td>
-                <td>Зима</td>
-                <td>Зима</td>
-            </tr>
-            <tr>
-                <td>2. Какие образы и детали помогают создать атмосферу зимнего утра, зимнего вечера?</td>
-                <td>Ясный солнечный день, искрящийся снег, синие тени, морозный воздух, тишина</td>
-                <td>Снежная буря, метель, темные сумерки, заснеженные поля, одинокий дом, замершие деревья</td>
-            </tr>
-            <tr>
-                <td>3. Каковы ваши чувства, когда вы читаете эти стихотворения?</td>
-                <td>Восхищение, радость, спокойствие</td>
-                <td>Тревога, грусть, тоска</td>
-            </tr>
-            <tr>
-                <td>4. Какие звуки и ощущения передает Пушкин в своем описании?</td>
-                <td>Тишина, хруст снега, звон колокольчиков</td>
-                <td>Шум ветра, стук метели, треск мороза</td>
-            </tr>
-            <tr>
-                <td>5. Как вы думаете, что хотел сказать автор о зиме и ее красоте?</td>
-                <td>Показать красоту и гармонию зимней природы</td>
-                <td>Передать атмосферу уныния, показать тяжесть зимних дней</td>
-            </tr>
-            <tr>
-                <td>6. Тема стихотворений</td>
-                <td>Описание зимнего утра</td>
-                <td>Описание зимнего вечера</td>
-            </tr>
-            <tr>
-                <td>7. Идея стихотворений</td>
-                <td>Красота и волшебство зимней природы</td>
-                <td>Неуют и грусть зимнего вечера</td>
-            </tr>
-            <tr>
-                <td>8. Вырази свое мнение о содержании стихотворений</td>
-                <td>Утренний пейзаж вызывает ощущение счастья и покоя</td>
-                <td>Вечерняя картина наполняет грустью, но очаровывает своей силой</td>
-            </tr>
-        </table>
+    <div class="burger-menu" onclick="toggleMenu()">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <div class="overlay" onclick="toggleMenu()"></div>
+    <div class="side-menu">
+        <ul>
+            <li>Урок 1: Человек и природа</li>
+            <li>Урок 2: Природные явления</li>
+            <li>Урок 3: Искусство</li>
+        </ul>
     </div>
 
-    <h2>Задание 2.</h2>
-    <h2>Зимнее утро</h2>
-    <p>Мороз и солнце — день чудесный,<br>
-        И лес, как в сказке, серебрист.<br>
-        Снег искрится чисто, нежно,<br>
-        Всю землю снежный плед покрыл.</p>
-    <p>Смотрю в окно — душа поет,<br>
-        Зима приносит тихий свет.<br>
-        И холод бодрость мне дает,<br>
-        Как будто в мире горя нет.</p>
-    <p>Скрипит тропинка под ногами,<br>
-        Всё замерло, уснуло вмиг.<br>
-        Зима встречает нас снегами,<br>
-        И сердце радостью проник.</p>
+    <div class="content">
+        <h1>Суммативное оценивание 1</h1>
+        <h2>За раздел «Человек и природа»</h2>
+        <h3>7 класс 2 четверть</h3>
+
+        <h2>Цель обучения:</h2>
+        <ul>
+            <li>7.1.6.1 давать аргументированный ответ на проблемный вопрос;</li>
+            <li>7.2.2.1 определять тему и идею произведения, выражая своё мнение о поступках героев;</li>
+            <li>7.2.9.1 писать творческие работы (сочинения, притча, отзыв, репортаж, интервью с литературным героем), выражая свое отношение к прочитанному, используя изобразительные средства языка</li>
+        </ul>
+
+        <h2>Задание 1. Ответьте на вопросы</h2>
+<div class="table-container">
+    <table>
+        <tr>
+            <th></th>
+            <th>«Зимнее утро»</th>
+            <th>«Зимний вечер»</th>
+        </tr>
+        <tr>
+            <td>1. Какое время года описывается в стихотворении?</td>
+            <td>Зима</td>
+            <td>Зима</td>
+        </tr>
+        <tr>
+            <td>2. Какие образы и детали помогают создать атмосферу?</td>
+            <td>Ясный солнечный день, искрящийся снег, морозный воздух</td>
+            <td>Снежная буря, темные сумерки, одиночество</td>
+        </tr>
+        <tr>
+            <td>3. Каковы ваши чувства при чтении стихотворений?</td>
+            <td>Радость, вдохновение</td>
+            <td>Грусть, тревога</td>
+        </tr>
+        <tr>
+            <td>4. Какие звуки и ощущения передает автор?</td>
+            <td>Тишина, звон колокольчиков, хруст снега</td>
+            <td>Шум ветра, стук метели</td>
+        </tr>
+        <tr>
+            <td>5. Что хотел сказать автор о зиме?</td>
+            <td>Передать красоту и гармонию природы</td>
+            <td>Показать суровость зимы</td>
+        </tr>
+        <tr>
+            <td>6. Тема стихотворений</td>
+            <td>Красота зимнего утра</td>
+            <td>Суровость зимнего вечера</td>
+        </tr>
+        <tr>
+            <td>7. Идея стихотворений</td>
+            <td>Очарование зимней природы</td>
+            <td>Испытания, которые приносит зима</td>
+        </tr>
+        <tr>
+            <td>8. Выразите свое мнение</td>
+            <td>Пейзаж наполняет спокойствием и радостью</td>
+            <td>Эмоции вызывают чувство одиночества и меланхолии</td>
+        </tr>
+    </table>
+</div>
+
+
+        <h2>Задание 2. Стихотворение «Зимнее утро»</h2>
+<p>Мороз и солнце — день чудесный,<br>
+И лес, как в сказке, серебрист.<br>
+Снег искрится чисто, нежно,<br>
+Всю землю снежный плед покрыл.</p>
+<p>Смотрю в окно — душа поет,<br>
+Зима приносит тихий свет.<br>
+И холод бодрость мне дает,<br>
+Как будто в мире горя нет.</p>
+<p>Скрипит тропинка под ногами,<br>
+Всё замерло, уснуло вмиг.<br>
+Зима встречает нас снегами,<br>
+И сердце радостью проник.</p>
+
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.querySelector('.side-menu');
+            const overlay = document.querySelector('.overlay');
+            menu.classList.toggle('open');
+            overlay.classList.toggle('open');
+        }
+    </script>
 </body>
 </html>
